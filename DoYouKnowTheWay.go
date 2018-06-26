@@ -8,9 +8,17 @@ import ("fmt"
 	"strconv"
 	)
 func main () {
+	args := os.Args
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Println("Hello, what is your name?")
-	username, _ := reader.ReadString('\n')
+	username := ""
+	if len(args) < 2 {
+		fmt.Println("Hello, what is your name?")
+		username, _ = reader.ReadString('\n')
+	} else {
+		fmt.Println("hello",args[1])
+		username = args[1]
+	}
+	username = strings.Replace(username,"\n","",-1)
 	fmt.Println("hello",username,"do you know the way?[yes/no]")
 	option, _   := reader.ReadString('\n')
 	if strings.Replace(option,"\n","",-1)  ==  "yes" {
